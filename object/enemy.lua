@@ -8,14 +8,13 @@ function Enemy:new()
   self.width = self.image:getWidth()
   self.height = self.image:getHeight()
   self.dead = false
-  self.spawnRate = 0.4
-  self.spawnTime = 2
+  self.spawnRate = love.math.random(0.2, 0.4)
+  self.spawnTime = love.math.random(0.5, 1)
   self.spawnCounter = 0
   self.health = 100
 end
 
 function Enemy:update(dt)
-  
   self.spawnCounter = self.spawnCounter + self.spawnRate * dt
   if self.spawnCounter > self.spawnTime then
     table.insert(listOfEnemies, Enemy())
@@ -35,7 +34,11 @@ function Enemy:update(dt)
   end
     
   if self.health <= 0 then
-        self.dead = true
+    self.dead = true
+  end
+  
+  if enemyCount > maxEnemies then
+    self.dead = true
   end
 end
 

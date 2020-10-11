@@ -34,6 +34,8 @@ function Player:shootGun()
     table.insert(listOfBullets, Bullet(self.x, self.y))
     --Engage the second cannon blaster
     table.insert(listOfBullets, Bullet((self.x+self.width)-10, self.y))
+    --Play sound
+    bullet_sfx:play()
   end
 end
 
