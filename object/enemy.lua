@@ -1,15 +1,15 @@
 Enemy = Object:extend()
 
-function Enemy:new()
-  self.image = love.graphics.newImage("img/snake.png")
+function Enemy:new(y)
+  self.image = love.graphics.newImage("img/snake_64.png")
   self.x = love.math.random(450)
-  self.y = 450
+  self.y = y
   self.speed = 100
   self.width = self.image:getWidth()
   self.height = self.image:getHeight()
   self.dead = false
   self.spawnRate = love.math.random(0.2, 0.4)
-  self.spawnTime = love.math.random(0.5, 1)
+  self.spawnTime = love.math.random(0.5, 1.5)
   self.spawnCounter = 0
   self.health = 100
 end
@@ -17,7 +17,9 @@ end
 function Enemy:update(dt)
   self.spawnCounter = self.spawnCounter + self.spawnRate * dt
   if self.spawnCounter > self.spawnTime then
-    table.insert(listOfEnemies, Enemy())
+    local row = love.math.random(1, 3)
+    local rowY = (row * 100) + 200
+    table.insert(listOfEnemies, Enemy(rowY ))
     self.spawnCounter = 0
   end  
   

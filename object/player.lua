@@ -1,11 +1,12 @@
 Player = Object:extend()
 
 function Player:new()
-  self.image = love.graphics.newImage("img/panda.png")
+  self.image = love.graphics.newImage("img/panda_64.png")
   self.x = 300
   self.y = 20
   self.speed = 500
   self.width = self.image:getWidth()
+  self.height = self.image:getHeight()
 end
 
 function Player:update(dt)
@@ -29,7 +30,7 @@ function Player:update(dt)
 end
 
 function Player:shootGun()
-  if love.keyboard.isDown("space") then
+  if (mode == "auto" and love.keyboard.isDown("space")) or mode == "manual" then
     --Put a new instance of Bullet inside listOfBullets
     table.insert(listOfBullets, Bullet(self.x, self.y))
     --Engage the second cannon blaster

@@ -2,10 +2,11 @@ Bullet = Object:extend()
 
 --We pass the x and y of the player
 function Bullet:new(x, y)
-  self.image = love.graphics.newImage("img/bullet.png")
+  self.image = love.graphics.newImage("img/bullet4.png")
   self.x = x
   self.y = y
   self.speed = 700
+  self.damage = 15
   self.width = self.image:getWidth()
   self.height = self.image:getHeight()
 end
@@ -34,6 +35,6 @@ function Bullet:checkCollision(obj)
   self_bottom > obj_top and
   self_top < obj_bottom then
     self.dead = true
-    obj.health = obj.health - 10
+    obj.health = obj.health - self.damage
   end
 end
